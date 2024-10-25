@@ -1,0 +1,51 @@
+public class SpiralMatrix {
+    
+    public static void printSpiral(int n) {
+        int[][] matrix = new int[n][n];
+        
+        int value = 1;       // Start filling from 1
+        int top = 0;         // Top row boundary
+        int bottom = n - 1;  // Bottom row boundary
+        int left = 0;        // Left column boundary
+        int right = n - 1;   // Right column boundary
+
+        while (value <= n * n) {
+            // Fill top row (left to right)
+            for (int i = left; i <= right; i++) {
+                matrix[top][i] = value++;
+            }
+            top++;
+
+            // Fill right column (top to bottom)
+            for (int i = top; i <= bottom; i++) {
+                matrix[i][right] = value++;
+            }
+            right--;
+
+            // Fill bottom row (right to left)
+            for (int i = right; i >= left; i--) {
+                matrix[bottom][i] = value++;
+            }
+            bottom--;
+
+            // Fill left column (bottom to top)
+            for (int i = bottom; i >= top; i--) {
+                matrix[i][left] = value++;
+            }
+            left++;
+        }
+
+        // Print the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.printf("%3d ", matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5;  // Size of the matrix
+        printSpiral(n);
+    }
+}
